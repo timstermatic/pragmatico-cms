@@ -3,3 +3,4 @@ composer.phar
 .vagrant
 Vendor
 tmp
+Plugin
