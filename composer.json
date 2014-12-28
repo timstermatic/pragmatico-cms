@@ -1,7 +1,8 @@
 {
   "name": "pragmatico cms",
   "require": {
-    "cakephp/cakephp": "2.5.*"
+    "cakephp/cakephp": "2.5.*",
+    "cakephp/debug_kit": "2.2.*"
   },
   "config": {
     "vendor-dir": "Vendor/"
