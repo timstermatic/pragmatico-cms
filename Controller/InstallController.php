@@ -15,13 +15,12 @@ class InstallController extends AppController {
   public function index()
   {
   	$this->loadModel('User');
-  	$users = $this->User->find('count');
-  	if($users != 0) {
+  	if($this->User->_count() != 0) {
   		$this->redirect(array('cms'=>true, 'controller'=>'users', 'action'=>'login'));
   	}
   	$this->layout = 'cms';
   	if($this->request->is('post')) {
-  		
+  		$this->request->data['User']['group_id'] = 1;
   		if($this->User->save($this->request->data)) {
   			$this->Session->setFlash(__('Admin user created. Please login'));
   			$this->redirect(array('cms'=>true, 'controller'=>'users', 'action'=>'login'));

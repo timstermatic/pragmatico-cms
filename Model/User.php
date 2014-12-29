@@ -46,6 +46,16 @@ class User extends AppModel {
 		return $this->data[$this->alias]['password'] == $this->data[$this->alias]['confirm_password'];
 	}
 
+/**
+ * get total number of system users
+ * 
+ * @return int $count
+ */
+	public function _count()
+	{
+		return $this->find('count');
+	}
+
 
 
 
