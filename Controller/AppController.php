@@ -19,6 +19,12 @@ class AppController extends Controller {
   	if($this->params['controller'] != 'install') {
   	  $this->_isInstalled();
   	}
+
+    // set layout based on prefix
+    if(!empty($this->params['prefix'])) {
+      $this->layout = $this->params['prefix'];
+    }
+
   }
 
 /**
@@ -32,5 +38,16 @@ class AppController extends Controller {
       $this->redirect(array('prefix'=>false, 'controller'=>'install', 'action'=>'index'));	  
   	}
   }
+
+/**
+ * sets page title
+ *
+ * @param string $title of page
+ */
+  public function setTitle($string=null)
+  {
+    $this->set('title_for_layout', $string);
+  }
+
 
 }
