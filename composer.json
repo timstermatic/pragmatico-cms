@@ -1,5 +1,6 @@
 {
   "name": "pragmatico cms",
+  "description": "a content management system built on cakephp",
   "require": {
     "cakephp/cakephp": "2.5.*",
     "cakephp/debug_kit": "2.2.*",
