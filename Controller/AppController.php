@@ -13,6 +13,7 @@ class AppController extends Controller {
  * components
  */
   public $components = array(
+    'Auth',
     'DebugKit.Toolbar',
     'Session'
   );
@@ -32,6 +33,7 @@ class AppController extends Controller {
     if(!empty($this->params['prefix'])) {
       $this->layout = $this->params['prefix'];
     }
+
 
   }
 
