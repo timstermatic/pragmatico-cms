@@ -5,7 +5,7 @@ apt-get update
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password rootpass'
 sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password rootpass'
 sudo apt-get update
-sudo apt-get -y install mysql-server-5.5 php5-mysql apache2 php5 php5-curl php5-gd php5-mcrypt
+sudo apt-get -y install mysql-server-5.5 php5-mysql apache2 php5 php5-curl php5-gd php5-mcrypt curl
 
 # Add ServerName to httpd.conf
 # Setup hosts file
@@ -37,3 +37,6 @@ fi
 rm -rf /var/www
 ln -fs /vagrant /var/www
 mkdir -p /vagrant/tmp/{cache/{models,persistent,views},sessions,logs,tests}
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/bin/composer
+
