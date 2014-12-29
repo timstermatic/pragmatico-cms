@@ -29,6 +29,14 @@ class PagesController extends AppController {
 	public $uses = array();
 
 /**
+ * allow display without being logged in
+ */
+	public function beforeFilter()
+	{
+		$this->Auth->allow(array('display'));
+	}
+
+/**
  * Displays a view
  *
  * @return void
