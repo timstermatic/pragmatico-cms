@@ -10,6 +10,15 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class InstallController extends AppController {
 
 /**
+ * beforeFilter
+ */
+  public function beforeFilter()
+  {
+    parent::beforeFilter();
+    $this->Auth->allow('index');
+  }
+
+/**
  * create the admin user
  */
   public function index()
@@ -22,7 +31,7 @@ class InstallController extends AppController {
   	if($this->request->is('post')) {
   		$this->request->data['User']['group_id'] = 1;
   		if($this->User->save($this->request->data)) {
-  			$this->Session->setFlash(__('Admin user created. Please login'));
+  			$this->Session->setFlash(__('Admin user created. Please login'), 'flash_success');
   			$this->redirect(array('cms'=>true, 'controller'=>'users', 'action'=>'login'));
   		}
   	}
