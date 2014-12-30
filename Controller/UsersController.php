@@ -12,7 +12,6 @@ class UsersController extends AppController {
  */
   public function cms_login()
   {
-   print_r($this->User->find('all'));
    if($this->request->is('post')) {
     if($this->Auth->login()) {
       $this->redirect(array('controller'=>'pages', 'action'=>'index'));    
@@ -21,6 +20,15 @@ class UsersController extends AppController {
     }
    }
    $this->setTitle(__('CMS Login')); 
+  }
+
+/**
+ * user logout
+ */
+  public function logout()
+  {
+    $this->Auth->logout();
+    $this->redirect('/');
   }
 
 }
