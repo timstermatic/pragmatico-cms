@@ -13,7 +13,14 @@ class AppController extends Controller {
  * components
  */
   public $components = array(
-    'Auth',
+    'Auth'=>array(
+      'authenticate' => array(
+        'Form' => array(
+          'passwordHasher' => 'Blowfish',
+          'fields' => array('username' => 'email')
+        )
+      )
+    ),
     'DebugKit.Toolbar',
     'Session'
   );
@@ -29,9 +36,18 @@ class AppController extends Controller {
   	  $this->_isInstalled();
   	}
 
-    // set layout based on prefix
     if(!empty($this->params['prefix'])) {
+      // set layout based on prefix
       $this->layout = $this->params['prefix'];
+
+      // block cms to non-admin users
+      if($this->Auth->user('id')) {
+        if($this->Auth->user('group_id') !=1 && $this->params['action'] != 'cms_login') {
+          $this->Auth->logout();
+          $this->redirect(array('cms'=>true, 'controller'=>'users', 'action'=>'login'));
+        }
+      }
+
     }
 
 
